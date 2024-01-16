@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varun Pathak - Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b5cbfcba44.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="header">
+    <div class="container"> 
+        <nav>
+            <!-- main logo of website-->
+            <img src="images/signature.png" class="logo">
+            
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-text">
+            <p>Let's get to work...</p>
+            <h1><span>Software Engineering ll</span> + Management Co-Op Student @ McMaster University</h1>
+        </div>
+    </div>
+</div>
+
+<!------------------ ABOUT ---------------------------->
+
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <!-- left and right columns of the about section (image and text)-->
+            <div class="about-col-1">
+                <img src="images/me.JPG">
+            </div>
+            <div class="about-col-2">
+                <h1 class="subtitle1">About me</h1>
+                <p>Hi there! My name is <span>Varun Pathak</span> and I am currently an undergraduate co-op student at <span>McMaster University</span> in Hamilton, ON. 
+                    In the past, I have developed hobbies in YouTube and Streaming while learning how to edit videos, coding and programming in a variety of langauages and frameworks, as well as gaining a liking to problem solving and critical thinking! 
+                    On the side, outside of the university, you will see me on the <span>badminton</span> court, at the <span>gym</span>, focusing on <span>self-improvement</span>, or relaxing with some friends and family!</p>
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Languages</p>
+                    <p class="tab-links" onclick="opentab('platforms')">Platforms</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                    <p class="tab-links" onclick="opentab('awards')">Awards</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Java</span></li>
+                        <li><span>Python</span></li>
+                        <li><span>C</span></li>
+                        <li><span>Bash</span></li>
+                        <li><span>Verilog</span></li>
+                        <li><span>MATLAB</span></li>
+                        <li><span>HTML/CSS/JS</span></li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="platforms">
+                    <ul>
+                        <li><span>Office 365</span></li>
+                        <li><span>GitHub</span></li>
+                        <li><span>Streamlit</span></li>
+                        <li><span>Python Image Library (PIL)</span></li>
+                        <li><span>AutoDesk Inventor</span></li>
+                        <li><span>Sony Vegas PRO 18.0</span></li>
+                        <li><span>Adobe Photoshop CS6</span></li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>McMaster University, Hamilton, ON</span><br>Expected Graduation: 2027</li>
+                        <li><span>St. Thomas Aquinas CSS, Oakville, ON</span></li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="awards">
+                    <ul>
+                        <li><span>Dean's Honors List - May 2023 / Honor Roll</span><br>2016-</li>
+                        <li><span>Faculty of Engineering Award of Excellence - 2022</span><br>$3000 + 2nd year stream selection</li>
+                        <li><span>Oakville Rotary Education Award - 2022</span><br>$2000</li>
+                        <li><span>DELF French Certificate - 2022</span><br>Level B1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-------------------------------PORTFOLIO------------------------------------------->
+
+<div id="portfolio">
+    <div class="container">
+        <h1 class="subtitle2">My Portfolio</h1>
+        <div class="project-list">
+            <div class="project">
+                <img src="images/webss.png">
+                <div class="layer">
+                    <h3> Personal Portfolio/Website</h3>
+                    <p>Created with: HTML, CSS, & JS</p>
+                    <a href="https://github.com/v5run/v5run.github.io"><i class="fa-brands fa-github" style="color: #2272FF;"></i></i></a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="images/diceart.png">
+                <div class="layer">
+                    <h3>DiceArt.io</h3>
+                    <p>Created with: Python (PIL) & Streamlit</p>
+                    <a href="https://github.com/v5run/DiceArt.io"><i class="fa-brands fa-github" style="color: #2272FF;"></i></i></a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="images/password-strength.webp">
+                <div class="layer">
+                    <h3>Password Resilience Analyzer</h3>
+                    <p>Created with: C</p>
+                    <a href="https://github.com/v5run/Password-Resilience-Analyzer"><i class="fa-brands fa-github" style="color: #2272FF;"></i></i></a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="images/combolock.png">
+                <div class="layer">
+                    <h3>Combination Lock - MooreFSM</h3>
+                    <p>Created with: Verilog & Intel Quartus Prime</p>
+                    <a href="https://github.com/v5run/DE1-SoC-ComboLock"><i class="fa-brands fa-github" style="color: #2272FF;"></i></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-----------------------------------CONTACT------------------------------------------------------------------------>
+
+
+
+
+<!----------------- scripting on-click function with javascript--------------------------->
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        //get content of tab when clicking, as it accepts tabname as a parameter
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+
+</body>
+</html>
