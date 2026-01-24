@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varun Pathak - Website</title>
+    <title>Varun Pathak - Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/b5cbfcba44.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="header">
     <div class="container"> 
         <nav>
-            <!-- main logo of website-->
             <img src="images/signature.png" class="logo">
             
             <ul>
@@ -21,9 +23,101 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <div class="header-text">
-            <p>Let's get to work...</p>
-            <h1><span>Software Engineering lll</span> + Management Co-Op Student @ <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a></h1>
+        
+        <div class="header-content">
+            <div class="header-left">
+                <div class="header-text">
+                    <p class="intro-label">Let's get to work...</p>
+                    <h1><span>Software Engineering III</span> + Management Co-Op Student @ <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a></h1>
+                    <p class="header-subtitle">Building intelligent systems & solving complex problems</p>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="timeline-container">
+                    <h3 class="timeline-title">Experience Timeline</h3>
+                    <div class="timeline">
+                        <div class="timeline-item active" data-experience="ia">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Sept 2025 - Present</div>
+                            <div class="timeline-content">
+                                <h4>Instructional Assistant</h4>
+                                <p class="timeline-company">McMaster University</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-experience="ml">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Oct 2024 - Present</div>
+                            <div class="timeline-content">
+                                <h4>AI/ML Engineer</h4>
+                                <p class="timeline-company">MacAI</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-experience="hack">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Jan 2026</div>
+                            <div class="timeline-content">
+                                <h4>DeltaHacks XII Winner</h4>
+                                <p class="timeline-company">Emergency Response Platform</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-experience="receipt">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Dec 2024 - Jan 2025</div>
+                            <div class="timeline-content">
+                                <h4>AI Receipt System</h4>
+                                <p class="timeline-company">Personal Project</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience Details Panel -->
+                <div class="experience-details">
+                    <div class="experience-panel active" id="exp-ia">
+                        <h4>Instructional Assistant Intern</h4>
+                        <p class="exp-company">McMaster University • Sept 2025 - Present</p>
+                        <ul class="exp-highlights">
+                            <li>Leading Python & Autodesk Inventor labs for 450+ students weekly</li>
+                            <li>Built automation utility saving 80% manual review time</li>
+                            <li>Supervising 30+ TAs and coordinating grading workflows</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-panel" id="exp-ml">
+                        <h4>AI/Machine Learning Engineer</h4>
+                        <p class="exp-company">MacAI • Oct 2024 - Present</p>
+                        <ul class="exp-highlights">
+                            <li>Developing human-guided MARL frameworks (34% improvement)</li>
+                            <li>Designed custom simulation environments in Python</li>
+                            <li>Conducted 200+ training trials for policy optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-panel" id="exp-hack">
+                        <h4>DeltaHacks XII Winner</h4>
+                        <p class="exp-company">Biometric Emergency Platform • Jan 2026</p>
+                        <ul class="exp-highlights">
+                            <li>Won Canada's largest student-run hackathon</li>
+                            <li>iOS platform with Firebase backend & Gemini AI</li>
+                            <li>ESP32 sensor pipeline with fall detection</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-panel" id="exp-receipt">
+                        <h4>AI Receipt Management System</h4>
+                        <p class="exp-company">Personal Project • Dec 2024 - Jan 2025</p>
+                        <ul class="exp-highlights">
+                            <li>Tesseract OCR with 95%+ accuracy</li>
+                            <li>PostgreSQL database managing 10,000+ records</li>
+                            <li>AWS S3 integration reducing costs by 30%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -33,14 +127,13 @@
 <div id="about">
     <div class="container">
         <div class="row">
-            <!-- left and right columns of the about section (image and text)-->
             <div class="about-col-1">
                 <img src="images/me.JPG">
             </div>
             <div class="about-col-2">
                 <h1 class="subtitle1">About me</h1>
                 <p>Hi there! My name is <span>Varun Pathak</span> and I am currently an undergraduate co-op student at <span>McMaster University</span> in Hamilton, ON. 
-                    In the past, I have developed hobbies in YouTube and Streaming while learning how to edit videos, coding and programming in a variety of langauages and frameworks, as well as gaining a liking to problem solving and critical thinking! 
+                    In the past, I have developed hobbies in YouTube and Streaming while learning how to edit videos, coding and programming in a variety of languages and frameworks, as well as gaining a liking to problem solving and critical thinking! 
                     On the side, outside of the university, you will see me on the <span>badminton</span> court, at the <span>gym</span>, focusing on <span>self-improvement</span>, or relaxing with some friends and family!</p>
 
                 <div class="tab-titles">
@@ -51,44 +144,36 @@
                 </div>
                 <div class="tab-contents active-tab" id="skills">
                     <ul>
-                        <li><span>Java</span></li>
                         <li><span>Python</span></li>
-                        <li><span>C</span></li>
-                        <li><span>Bash</span></li>
-                        <li><span>Verilog</span></li>
-                        <li><span>MATLAB</span></li>
-                        <li><span>HTML/CSS/JavaScript</span></li>
+                        <li><span>Java</span></li>
                         <li><span>SQL</span></li>
-                        <li><span>LaTeX</span></li>
+                        <li><span>Bash/Unix</span></li>
+                        <li><span>HTML/CSS/JavaScript</span></li>
                         <li><span>R</span></li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="platforms">
                     <ul>
-                        <li><span>Git</span></li>
-                        <li><span>AWS</span></li>
+                        <li><span>Git & GitHub</span></li>
+                        <li><span>AWS (S3, IAM)</span></li>
+                        <li><span>React/React Native</span></li>
                         <li><span>Maven</span></li>
-                        <li><span>GitHub</span></li>
-                        <li><span>OpenCV</span></li>
-                        <li><span>TensorFlow</span></li>
-                        <li><span>Flask</span></li>
-                        <li><span>Tesseract</span></li>
-                        <li><span>MongoDB</span></li>
-                        <li><span>PostgreSQL</span></li>
+                        <li><span>MongoDB & PostgreSQL</span></li>
+                        <li><span>Firebase (Auth, Firestore)</span></li>
                         <li><span>Apache Log4j</span></li>
-                        <li><span>Sony Vegas PRO 18.0</span></li>
-                        <li><span>Adobe Photoshop CS6</span></li>
+                        <li><span>Office 365 (Excel)</span></li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="education">
                     <ul>
-                        <li><span>McMaster University, Hamilton, ON</span><br>Expected Graduation: 2027</li>
+                        <li><span>McMaster University, Hamilton, ON</span><br>Software Engineering & Management Co-op (B.Eng.Mgt.)<br>Expected Graduation: May 2027 • CGPA: 3.8/4.0<br>Dean's Honors List (2023-2025)</li>
                         <li><span>St. Thomas Aquinas CSS, Oakville, ON</span><br>Graduation: 2022</li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="awards">
                     <ul>
-                        <li><span>Dean's Honors List - May 2023/2024 / Honor Roll</span><br>2016-</li>
+                        <li><span>DeltaHacks XII Winner - Jan 2026</span><br>Canada's largest student-run hackathon</li>
+                        <li><span>Dean's Honors List - 2023-2025</span><br>CGPA: 3.8/4.0</li>
                         <li><span>Faculty of Engineering Award of Excellence - 2022</span><br>$3000 + 2nd year stream selection</li>
                         <li><span>Oakville Rotary Education Award - 2022</span><br>$2000</li>
                         <li><span>DELF French Certificate - 2022</span><br>Level B1</li>
@@ -98,6 +183,7 @@
         </div>
     </div>
 </div>
+
 <!-------------------------------PORTFOLIO------------------------------------------->
 
 <div id="portfolio">
@@ -109,7 +195,7 @@
                 <div class="layer">
                     <h3>PaperTrail - AI Receipt Management System</h3>
                     <p>Created with: Flask, Tesseract OCR, PostgreSQL, & AWS S3</p>
-                    <a href="https://github.com/v5run/papertrail"><i class="fa-brands fa-github" style="color: #df6bf9;"></i></i></a>
+                    <a href="https://github.com/v5run/papertrail"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
             <div class="project">
@@ -117,7 +203,7 @@
                 <div class="layer">
                     <h3>Garden of Eden - Blockchain</h3>
                     <p>Created with: Java, MongoDB, & BouncyCastle</p>
-                    <a href="https://github.com/v5run/eden"><i class="fa-brands fa-github" style="color: #1c7301;"></i></i></a>
+                    <a href="https://github.com/v5run/eden"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
             <div class="project">
@@ -125,7 +211,7 @@
                 <div class="layer">
                     <h3>"Maze Runner" - Maze Solving Algorithms</h3>
                     <p>Created with: Java, DSA, & SOLID Principles</p>
-                    <a href="https://github.com/v5run/a3-maze-runner-take-two-v5run"><i class="fa-brands fa-github" style="color: #e38a05;"></i></i></a>
+                    <a href="https://github.com/v5run/a3-maze-runner-take-two-v5run"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
             <div class="project">
@@ -133,15 +219,15 @@
                 <div class="layer">
                     <h3>DiceArt.io</h3>
                     <p>Created with: Python (PIL) & Streamlit</p>
-                    <a href="https://github.com/v5run/DiceArt.io"><i class="fa-brands fa-github" style="color: #000000;"></i></i></a>
+                    <a href="https://github.com/v5run/DiceArt.io"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
             <div class="project">
                 <img src="images/webss.png">
                 <div class="layer">
-                    <h3> Personal Portfolio/Website</h3>
+                    <h3>Personal Portfolio/Website</h3>
                     <p>Created with: HTML, CSS, & JS</p>
-                    <a href="https://github.com/v5run/v5run.github.io"><i class="fa-brands fa-github" style="color: #2272FF;"></i></i></a>
+                    <a href="https://github.com/v5run/v5run.github.io"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>
@@ -155,38 +241,31 @@
         <div class="row">
             <div class="contact-left">
                 <h1 class="subtitle2">Contact Me</h1>
-                <!--
-                <a href="mailto:varun11pathak@gmail.com">Email me: varun11pathak@gmail.com</a>
-                -->
-                <p><i class="fa-solid fa-paper-plane" style="color: #2272FF;"></i> varun11pathak@gmail.com</p>
-                <!--
-                <p><i class="fa-solid fa-phone-volume" style="color: #2272FF;"></i> +1 (289)-981-2868</p>
-                -->
+                <p><i class="fa-solid fa-paper-plane"></i> varun11pathak@gmail.com</p>
                 <div class="social-icons">
-                    <a href="https://github.com/v5run/" target="_blank"><i class="fa-brands fa-github"></i></i></a>
-                    <a href="https://www.linkedin.com/in/v5run/" target="_blank"><i class="fa-brands fa-linkedin"></i></i></a>
-                    <a href="https://www.instagram.com/v5run/" target="_blank"><i class="fa-brands fa-instagram"></i></i></a>
+                    <a href="https://github.com/v5run/" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/v5run/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/v5run/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
                 <a href="/images/resume.pdf" target="_blank" class="btn">Download CV</a>
             </div>
             <div class="contact-right">
-
-                <!-- Setting up the contact form, sets a placeholder for blank text, required to fill in name, text input-->
                 <form>
                     <input type="text" name="Name" placeholder="Your Name" required>
                     <input type="email" name="Email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="5" placeholder="Your Message" ></textarea>
+                    <textarea name="Message" rows="5" placeholder="Your Message"></textarea>
                     <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
     </div>
+    <div class="footer">
+        <p>© 2027 Varun Pathak. Built with creativity & code.</p>
+    </div>
 </div>
 
-
-<!----------------- scripting on-click function with javascript--------------------------->
 <script>
-
+    // Tab functionality
     var tablinks = document.getElementsByClassName("tab-links");
     var tabcontents = document.getElementsByClassName("tab-contents");
     function opentab(tabname){
@@ -197,9 +276,27 @@
             tabcontent.classList.remove("active-tab");
         }
         event.currentTarget.classList.add("active-link");
-        //get content of tab when clicking, as it accepts tabname as a parameter
         document.getElementById(tabname).classList.add("active-tab");
     }
+    
+    // Timeline interaction
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const experiencePanels = document.querySelectorAll('.experience-panel');
+    
+    timelineItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Remove active class from all items
+            timelineItems.forEach(i => i.classList.remove('active'));
+            experiencePanels.forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked item
+            item.classList.add('active');
+            
+            // Show corresponding experience panel
+            const expId = 'exp-' + item.dataset.experience;
+            document.getElementById(expId).classList.add('active');
+        });
+    });
 </script>
 
 </body>
