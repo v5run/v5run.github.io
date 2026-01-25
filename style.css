@@ -106,7 +106,7 @@ nav{
     opacity: 0;
     pointer-events: none;
     z-index: 100;
-    color: red;
+    color: #d2afff;
     font-weight: 300;
 }
 
@@ -564,13 +564,13 @@ nav ul li a:hover::after{
     width: 100%;
     position: relative;
     z-index: 1;
-    filter: grayscale(100%);
+    filter: grayscale(100%) blur(1px);
     transition: all 0.4s ease;
 }
 
 .about-img-secondary {
     width: 100%;
-    filter: grayscale(100%);
+    filter: grayscale(100%) blur(1px);
     transition: all 0.4s ease;
     border: 3px solid var(--pure-black);
 }
@@ -579,6 +579,7 @@ nav ul li a:hover::after{
 .about-img-secondary:hover {
     filter: grayscale(0%);
     transform: translate(8px, 8px);
+    box-shadow: -8px -8px 0 var(--pure-black);
 }
 
 .about-col-2{
@@ -761,7 +762,7 @@ nav ul li a:hover::after{
     flex-direction: column;
     padding: 0 40px;
     text-align: center;
-    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
 }
 
 .layer h3{
@@ -770,18 +771,18 @@ nav ul li a:hover::after{
     font-size: 24px;
     margin-bottom: 15px;
     color: var(--pure-white);
-    transform: translateY(20px);
+    transform: translateY(30px);
     opacity: 0;
-    transition: all 0.4s ease 0.1s;
+    transition: all 0.5s ease 0.5s;
 }
 
 .layer p {
     color: var(--medium-gray);
     font-size: 14px;
     line-height: 1.6;
-    transform: translateY(20px);
+    transform: translateY(30px);
     opacity: 0;
-    transition: all 0.4s ease 0.2s;
+    transition: all 0.5s ease 0.7s;
 }
 
 .layer a{
@@ -795,10 +796,9 @@ nav ul li a:hover::after{
     height: 56px;
     border-radius: 50%;
     text-align: center;
-    transition: all 0.3s ease;
-    transform: translateY(20px);
+    transform: translateY(30px);
     opacity: 0;
-    transition: all 0.4s ease 0.3s;
+    transition: all 0.5s ease 0.9s;
     border: 2px solid var(--pure-white);
 }
 
