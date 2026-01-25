@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Varun Pathak - Portfolio</title>
+    <link rel="icon" type="image/png" href="images/signature.png">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/b5cbfcba44.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +15,10 @@
 <div id="header">
     <div class="container"> 
         <nav>
-            <img src="images/signature.png" class="logo">
+            <div class="logo-wrapper">
+                <img src="images/signature.png" class="logo">
+                <span class="heart-animation">♡</span>
+            </div>
             
             <ul>
                 <li><a href="#">Home</a></li>
@@ -185,8 +189,8 @@
                         <h4>Teaching Assistant</h4>
                         <p class="exp-company">Ask Tutors • Sept 2023 - Feb 2025</p>
                         <ul class="exp-highlights">
-                            <li>Tutoring students internationally (Canada, United States, Dubai)</li>
-                            <li>Explained topics in Computer Science, AP/IB/HL mathematics, AP/IB Physics, & AP Economics</li>
+                            <li>Tutoring students internationally (Canada, United States, Dubai, India)</li>
+                            <li>Explained topics in Computer Science, AP/IB/HL Mathematics, AP/IB Physics, & AP Economics</li>
                             <li>In-person + Online, maintaining 12+ students concurrently, each week</li>
                         </ul>
                     </div>
@@ -216,6 +220,14 @@
                     <h3>PaperTrail - AI Receipt Management System</h3>
                     <p>Created with: Flask, Tesseract OCR, PostgreSQL, & AWS S3</p>
                     <a href="https://github.com/v5run/papertrail"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="images/trafficRL.png">
+                <div class="layer">
+                    <h3>TrafficLightRL</h3>
+                    <p>Created with: Python, SUMO, & StableBaselines3</p>
+                    <a href="https://github.com/McMasterAI-Society/TrafficLightRL"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
             <div class="project">
@@ -280,11 +292,33 @@
         </div>
     </div>
     <div class="footer">
-        <p>© 2026 Varun Pathak. Built with creativity & code.</p>
+        <p>© 2026 Varun Pathak (v5run)</p>
     </div>
 </div>
 
 <script>
+    // Logo heart animation easter egg
+    const logoWrapper = document.querySelector('.logo-wrapper');
+    const heartAnimation = document.querySelector('.heart-animation');
+    
+    if (logoWrapper && heartAnimation) {
+        logoWrapper.addEventListener('click', () => {
+            // Remove active class if it exists to restart animation
+            heartAnimation.classList.remove('active');
+            
+            // Force reflow to restart animation
+            void heartAnimation.offsetWidth;
+            
+            // Add active class to trigger animation
+            heartAnimation.classList.add('active');
+            
+            // Remove active class after animation completes
+            setTimeout(() => {
+                heartAnimation.classList.remove('active');
+            }, 1200);
+        });
+    }
+
     // Tab functionality
     var tablinks = document.getElementsByClassName("tab-links");
     var tabcontents = document.getElementsByClassName("tab-contents");
