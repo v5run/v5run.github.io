@@ -10,6 +10,37 @@
     --text-secondary: #666666;
 }
 
+/* Dark mode styles */
+body.dark-mode {
+    --pure-white: #0A0A0A;
+    --off-white: #121212;
+    --light-gray: #1A1A1A;
+    --medium-gray: #333333;
+    --dark-gray: #AAAAAA;
+    --pure-black: #FFFFFF;
+    --soft-black: #E5E5E5;
+    --text-primary: #E5E5E5;
+    --text-secondary: #AAAAAA;
+}
+
+body.dark-mode .logo {
+    filter: invert(0);
+}
+
+body.dark-mode .logo:hover {
+    filter: invert(0) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+}
+
+body.dark-mode #header::before {
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+}
+
+body.dark-mode .heart-animation {
+    color: #8b7fc7;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -174,6 +205,74 @@ nav ul li a:hover{
 nav ul li a:hover::after{
     width: 100%;
 }
+
+/* ---------------- THEME TOGGLE ---------------- */
+
+.theme-toggle {
+    position: relative;
+    width: 56px;
+    height: 32px;
+    background: var(--pure-white);
+    border: 2px solid var(--pure-black);
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 3px 3px 0 var(--pure-black);
+    transition: all 0.25s ease;
+}
+
+.theme-toggle:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--pure-black);
+}
+
+/* ICON BASE */
+.theme-toggle span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* -------- SUN (hand-drawn circle + rays) -------- */
+.icon-sun {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--pure-black);
+    border-radius: 50%;
+}
+
+.icon-sun::before,
+.icon-sun::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px dashed var(--pure-black);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+/* -------- MOON (hand-drawn crescent) -------- */
+.icon-moon {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: -4px 0 0 0 var(--pure-black);
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-20deg);
+}
+
+/* -------- DARK MODE STATE -------- */
+body.dark-mode .icon-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+}
+
+body.dark-mode .icon-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
 
 /* Header Content Layout */
 .header-content {
