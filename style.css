@@ -79,15 +79,65 @@ nav{
     border-bottom: 1px solid var(--medium-gray);
 }
 
+.logo-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
 .logo{
     width: 140px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
     filter: invert(1);
+    display: block;
 }
 
 .logo:hover {
     transform: scale(1.05);
-    filter: invert(1) drop-shadow(5px 5px 10px rgba(0,0,0,0.5));
+    filter: invert(1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.heart-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    color: red;
+    font-weight: 300;
+}
+
+.heart-animation.active {
+    animation: heartSketch 1.2s ease-out;
+}
+
+@keyframes heartSketch {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3) rotate(-10deg);
+        filter: blur(2px);
+    }
+    20% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        filter: blur(0px);
+    }
+    40% {
+        opacity: 1;
+        transform: translate(-50%, -55%) scale(1.05) rotate(3deg);
+    }
+    60% {
+        opacity: 0.6;
+        transform: translate(-50%, -65%) scale(0.95) rotate(-2deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -90%) scale(0.7) rotate(5deg);
+        filter: blur(1px);
+    }
 }
 
 nav ul li{
@@ -514,13 +564,13 @@ nav ul li a:hover::after{
     width: 100%;
     position: relative;
     z-index: 1;
-    filter: grayscale(100%) blur(1px);
+    filter: grayscale(100%);
     transition: all 0.4s ease;
 }
 
 .about-img-secondary {
     width: 100%;
-    filter: grayscale(100%) blur(1px);
+    filter: grayscale(100%);
     transition: all 0.4s ease;
     border: 3px solid var(--pure-black);
 }
@@ -529,7 +579,6 @@ nav ul li a:hover::after{
 .about-img-secondary:hover {
     filter: grayscale(0%);
     transform: translate(8px, 8px);
-    box-shadow: -8px -8px 0 var(--pure-black);
 }
 
 .about-col-2{
@@ -686,7 +735,6 @@ nav ul li a:hover::after{
 
 .project:hover {
     box-shadow: 8px 8px 0 var(--pure-black);
-    opacity: 0.9;
     transform: translate(-4px, -4px);
 }
 
