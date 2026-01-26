@@ -670,40 +670,92 @@ body.dark-mode .icon-moon {
 .about-images {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+    position: relative;
+}
+
+/* Decorative organic shapes around images */
+.about-images::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    border: 2px dashed var(--pure-black);
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+}
+
+.about-images::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--pure-black);
+    opacity: 0.15;
+    z-index: 0;
+    transform: rotate(15deg);
 }
 
 .about-img-main::before {
     content: '';
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 12px;
+    left: 12px;
     width: 100%;
-    height: 48%;
+    height: 100%;
     border: 3px solid var(--pure-black);
     z-index: 0;
+    opacity: 0.6;
 }
 
 .about-img-main {
     width: 100%;
     position: relative;
     z-index: 1;
-    filter: grayscale(100%) blur(1px);
-    transition: all 0.4s ease;
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid var(--pure-black);
+    /*box-shadow: 6px 6px 0 var(--pure-black);*/
 }
 
 .about-img-secondary {
     width: 100%;
-    filter: grayscale(100%) blur(1px);
-    transition: all 0.4s ease;
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     border: 3px solid var(--pure-black);
+    /*box-shadow: 6px 6px 0 var(--pure-black);*/
+    position: relative;
+}
+
+/* Add sketchy corner accent to secondary image */
+.about-img-secondary::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    width: 60px;
+    height: 60px;
+    border-right: 3px solid var(--pure-black);
+    border-bottom: 3px solid var(--pure-black);
+    opacity: 0.4;
 }
 
 .about-img-main:hover,
 .about-img-secondary:hover {
-    filter: grayscale(0%);
+    filter: grayscale(0%) contrast(1);
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--pure-black);
+}
+
+.about-img-main:hover::before {
+    opacity: 0.3;
     transform: translate(8px, 8px);
-    box-shadow: -8px -8px 0 var(--pure-black);
 }
 
 .about-col-2{
