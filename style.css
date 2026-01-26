@@ -41,6 +41,31 @@ body.dark-mode .heart-animation {
     color: #8b7fc7;
 }
 
+/* Fix portfolio layer text visibility in dark mode */
+body.dark-mode .layer {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+body.dark-mode .layer h3 {
+    color: #000000;
+}
+
+body.dark-mode .layer p {
+    color: #333333;
+}
+
+body.dark-mode .layer a {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+body.dark-mode .layer a:hover {
+    background: transparent;
+    color: #000000;
+}
+
+
 *{
     margin: 0;
     padding: 0;
