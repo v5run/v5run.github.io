@@ -12,36 +12,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="header">
-    <div class="container"> 
-        <nav>
-            <div class="logo-wrapper">
-                <img src="images/signature.png" class="logo">
-                <span class="heart-animation">♡</span>
-            </div>
+    <div class="cursor-follower"></div>
+
+    <div id="header">
+        <div class="container"> 
+            <nav>
+                <div class="logo-wrapper">
+                    <img src="images/signature.png" class="logo">
+                    <span class="heart-animation">♡</span>
+                </div>
+                
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <span class="icon-sun"></span>
+                        <span class="icon-moon"></span>
+                    </button></li>
+                </ul>
+            </nav>
             
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                    <span class="icon-sun"></span>
-                    <span class="icon-moon"></span>
-                </button></li>
-            </ul>
-        </nav>
-        
-        <div class="header-content">
-            <div class="header-text">
-                <p class="intro-label">Let's get to work...</p>
-                <h1><span>Software Engineering IV</span> + Management Co-Op Student @ <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a></h1>
-                <p class="header-subtitle">Building intelligent systems & solving complex problems</p>
+            <div class="header-content">
+                <div class="header-text">
+                    <p class="intro-label">Let's get to work...</p>
+                    <h1><span>Software Engineering IV</span> + Management Co-Op Student @ <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a></h1>
+                    <p class="header-subtitle">Building intelligent systems & solving complex problems</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <!------------------ ABOUT ---------------------------->
 
@@ -378,6 +380,51 @@
             document.getElementById(expId).classList.add('active');
         });
     });
+
+    // Custom Cursor
+    const cursorFollower = document.querySelector('.cursor-follower');
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorFollower.classList.add('active');
+    });
+
+    function animateCursor() {
+        const speed = 0.15;
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+        
+        cursorFollower.style.left = cursorX + 'px';
+        cursorFollower.style.top = cursorY + 'px';
+        
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+    // Hover effects for interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .project, .timeline-item, input, textarea, .logo-wrapper');
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursorFollower.classList.add('hover');
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            cursorFollower.classList.remove('hover');
+        });
+    });
+
+    // Hide cursor on touch devices
+    if ('ontouchstart' in window) {
+        cursorFollower.style.display = 'none';
+        document.body.style.cursor = 'auto';
+    }
+
 </script>
 
 </body>
