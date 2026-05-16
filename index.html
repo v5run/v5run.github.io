@@ -11,7 +11,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">✕</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
     <div class="cursor-follower"></div>
 
     <div id="header">
@@ -80,6 +87,10 @@
                 </div>
                 <div class="tab-contents" id="platforms">
                     <ul>
+                        <li><span>Google Agent Development Kit (ADK)</span></li>
+                        <li><span>Bitbucket</span></li>
+                        <li><span>Jira & Confluence</span></li>
+                        <li><span>Google Cloud Platform (GCP)</span></li>
                         <li><span>Git & GitHub</span></li>
                         <li><span>AWS (S3, IAM)</span></li>
                         <li><span>React/React Native</span></li>
@@ -122,9 +133,18 @@
             <div class="timeline-left">
                 <div class="timeline-container">
                     <div class="timeline">
+                        <div class="timeline-item active" data-experience="hdc">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">May 2026 - Present</div>
+                            <div class="timeline-content">
+                                <h4>Data Scientist</h4>
+                                <p class="timeline-company">The Home Depot Canada</p>
+                            </div>
+                        </div>
+
                         <div class="timeline-item active" data-experience="ai">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-date">Oct 2025 - Present</div>
+                            <div class="timeline-date">Oct 2025 - Mar 2026</div>
                             <div class="timeline-content">
                                 <h4>AI Engineer</h4>
                                 <p class="timeline-company">MacAI</p>
@@ -133,7 +153,7 @@
 
                         <div class="timeline-item" data-experience="ia">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-date">Sept 2025 - Present</div>
+                            <div class="timeline-date">Sept 2025 - Apr 2026</div>
                             <div class="timeline-content">
                                 <h4>Instructional Assistant Intern</h4>
                                 <p class="timeline-company">McMaster University</p>
@@ -163,9 +183,17 @@
             
             <div class="timeline-right">
                 <div class="experience-details">
+                    <div class="experience-panel active" id="exp-hdc">
+                        <h4>Data Scientist</h4>
+                        <p class="exp-company">The Home Depot Canada • May 2026 - Present</p>
+                        <ul class="exp-highlights">
+                            <li>Building Ask Homer, an agentic AI tool for Home Depot's myToolBelt platform</li>
+                        </ul>
+                    </div>
+
                     <div class="experience-panel active" id="exp-ai">
                         <h4>AI Engineer</h4>
-                        <p class="exp-company">McMaster Artificial Intelligence Society • Oct 2025 - Present</p>
+                        <p class="exp-company">McMaster Artificial Intelligence Society • Oct 2025 - Mar 2026</p>
                         <ul class="exp-highlights">
                             <li>Developing human-guided MARL frameworks (34% improvement)</li>
                             <li>Designed custom simulation environments in Python</li>
@@ -175,11 +203,17 @@
 
                     <div class="experience-panel" id="exp-ia">
                         <h4>Instructional Assistant Intern</h4>
-                        <p class="exp-company">McMaster University • Sept 2025 - Present</p>
+                        <p class="exp-company">McMaster University • Sept 2025 - Apr 2026</p>
                         <ul class="exp-highlights">
-                            <li>Leading Python, Autodesk Inventor, & Design project labs for 500+ students weekly</li>
-                            <li>Built automation utility saving 80% manual review time</li>
-                            <li>Supervising 60+ TAs and coordinating grading workflows as an undergraduate</li>
+                            <li>Led Python, Autodesk Inventor, & Design project labs for 500+ students weekly</li>
+                            <li>Built automation utility with Python saving 80% manual review time</li>
+                            <li>Supervised 60+ TAs and coordinating grading workflows as an undergraduate</li>
+                            <div class="exp-img">
+                                <img src="images/exp/iai1.jpeg">
+                                <img src="images/exp/iai2.jpeg">
+                                <img src="images/exp/iai3.jpeg">
+                            </div>
+                            
                         </ul>
                     </div>
                     
@@ -190,6 +224,11 @@
                             <li>Won Top 3 @ CUCAI 2025</li>
                             <li>Developed an RL-based Traffic Control system using Python</li>
                             <li>Validated performance of a real-world intersection (College St. & University Ave.) in Toronto</li>
+                            <div class="exp-img">
+                                <img src="images/exp/cucai1.jpeg">
+                                <img src="images/exp/cucai2.jpeg">
+                                <img src="images/exp/cucai3.jpeg">
+                            </div>
                         </ul>
                     </div>
                     
@@ -397,7 +436,7 @@
     });
 
     function animateCursor() {
-        const speed = 0.15;
+        const speed = 0.25;
         cursorX += (mouseX - cursorX) * speed;
         cursorY += (mouseY - cursorY) * speed;
         
@@ -426,6 +465,30 @@
         cursorFollower.style.display = 'none';
         document.body.style.cursor = 'auto';
     }
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.exp-img img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+        });
+    });
+
+    document.querySelector('.lightbox-close').addEventListener('click', () => {
+        lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.classList.remove('active');
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') lightbox.classList.remove('active');
+    });
 
 </script>
 

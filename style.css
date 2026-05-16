@@ -20,7 +20,7 @@
     position: fixed;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.2s ease-out, opacity 0.2s ease-out, background-color 0.2s ease;
+    transition: opacity 0.2s ease-out, background-color 0.2s ease;
     opacity: 0;
     left: 0;
     top: 0;
@@ -45,6 +45,53 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox img {
+    max-width: 85vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 2px solid var(--pure-white);
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    color: var(--pure-white);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox-close:hover {
+    opacity: 0.6;
+}
+/*--------------------------------------------*/
 
 body{
     background: var(--pure-white);
@@ -627,6 +674,31 @@ body.dark-mode .icon-moon {
     display: block;
 }
 
+.exp-img {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--medium-gray);
+    flex-wrap: wrap;
+}
+
+.exp-img img {
+    flex: 1 1 calc(33% - 16px);
+    height: 200px;
+    object-fit: cover;
+    border: 3px solid var(--pure-black);
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exp-img img:hover {
+    filter: grayscale(0%) contrast(1);
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--pure-black);
+}
+
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -675,6 +747,7 @@ body.dark-mode .icon-moon {
     font-size: 20px;
     line-height: 1;
 }
+
 
 /* ------------------------------------------------- ABOUT ------------------------------------------------*/
 
