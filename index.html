@@ -11,7 +11,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">✕</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
     <div class="cursor-follower"></div>
 
     <div id="header">
@@ -80,6 +87,10 @@
                 </div>
                 <div class="tab-contents" id="platforms">
                     <ul>
+                        <li><span>Google Agent Development Kit (ADK)</span></li>
+                        <li><span>Bitbucket</span></li>
+                        <li><span>Jira & Confluence</span></li>
+                        <li><span>Google Cloud Platform (GCP)</span></li>
                         <li><span>Git & GitHub</span></li>
                         <li><span>AWS (S3, IAM)</span></li>
                         <li><span>React/React Native</span></li>
@@ -93,15 +104,14 @@
                 </div>
                 <div class="tab-contents" id="education">
                     <ul>
-                        <li><span>McMaster University, Hamilton, ON</span><br>Software Engineering & Management Co-op (B.Eng.Mgt.)<br>Expected Graduation: May 2028 • CGPA: 3.8/4.0<br>Dean's Honors List (2023-2025)</li>
-                        <li><span>St. Thomas Aquinas CSS, Oakville, ON</span><br>Graduation: 2022</li>
+                        <li><span>McMaster University, Hamilton, ON</span><br>Software Engineering & Management Co-op (B.Eng.Mgt.)<br>Expected Graduation: May 2028 • CGPA: 3.8/4.0<br>Dean's Honors List (2023-Present)</li>
+                        <li><span>St. Thomas Aquinas CSS, Oakville, ON</span><br>Class of 2022, Ontario Scholar (96.7% average)</li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="awards">
                     <ul>
                         <li><span>Top 5 @ Carnegie Mellon University - Feb 2026</span><br>TartanHacks, Pittsburgh's largest hackathon (270+ projects, >1050 Hackers)</li>
                         <li><span>Winner @ DeltaHacks XII - Jan 2026</span><br>Canada's largest student-run hackathon (200+ projects, >600 Hackers)</li>
-                        <li><span>Dean's Honors List - 2023-2025</span><br>CGPA: 3.8/4.0</li>
                         <li><span>Faculty of Engineering Award of Excellence - 2022</span><br>$3000 + 2nd year stream selection</li>
                         <li><span>Oakville Rotary Education Award - 2022</span><br>$2000</li>
                         <li><span>DELF French Certificate - 2022</span><br>Level B1</li>
@@ -122,9 +132,18 @@
             <div class="timeline-left">
                 <div class="timeline-container">
                     <div class="timeline">
-                        <div class="timeline-item active" data-experience="ai">
+                        <div class="timeline-item active" data-experience="hdc">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-date">Oct 2025 - Present</div>
+                            <div class="timeline-date">May 2026 - Present</div>
+                            <div class="timeline-content">
+                                <h4>Data Scientist</h4>
+                                <p class="timeline-company">The Home Depot Canada</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-experience="ai">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Oct 2025 - Mar 2026</div>
                             <div class="timeline-content">
                                 <h4>AI Engineer</h4>
                                 <p class="timeline-company">MacAI</p>
@@ -133,7 +152,7 @@
 
                         <div class="timeline-item" data-experience="ia">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-date">Sept 2025 - Present</div>
+                            <div class="timeline-date">Sept 2025 - Apr 2026</div>
                             <div class="timeline-content">
                                 <h4>Instructional Assistant Intern</h4>
                                 <p class="timeline-company">McMaster University</p>
@@ -163,11 +182,19 @@
             
             <div class="timeline-right">
                 <div class="experience-details">
-                    <div class="experience-panel active" id="exp-ai">
-                        <h4>AI Engineer</h4>
-                        <p class="exp-company">McMaster Artificial Intelligence Society • Oct 2025 - Present</p>
+                    <div class="experience-panel active" id="exp-hdc">
+                        <h4>Data Scientist</h4>
+                        <p class="exp-company">The Home Depot Canada • May 2026 - Present</p>
                         <ul class="exp-highlights">
-                            <li>Developing human-guided MARL frameworks (34% improvement)</li>
+                            <li>Building Ask Homer, an agentic AI tool for Home Depot's myToolBelt platform</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-panel" id="exp-ai">
+                        <h4>AI Engineer</h4>
+                        <p class="exp-company">McMaster Artificial Intelligence Society • Oct 2025 - Mar 2026</p>
+                        <ul class="exp-highlights">
+                            <li>Developed human-guided MARL frameworks (34% improvement)</li>
                             <li>Designed custom simulation environments in Python</li>
                             <li>Conducted 200+ training trials for policy optimization</li>
                         </ul>
@@ -175,11 +202,17 @@
 
                     <div class="experience-panel" id="exp-ia">
                         <h4>Instructional Assistant Intern</h4>
-                        <p class="exp-company">McMaster University • Sept 2025 - Present</p>
+                        <p class="exp-company">McMaster University • Sept 2025 - Apr 2026</p>
                         <ul class="exp-highlights">
-                            <li>Leading Python, Autodesk Inventor, & Design project labs for 500+ students weekly</li>
-                            <li>Built automation utility saving 80% manual review time</li>
-                            <li>Supervising 60+ TAs and coordinating grading workflows as an undergraduate</li>
+                            <li>Led Python, Autodesk Inventor (CAD), & Design project labs for 500+ students weekly, spanning over 1000 first-year engineering students</li>
+                            <li>Built an automation utility with Python saving 80% manual review time</li>
+                            <li>Supervised 60+ TAs and coordinated grading workflows as an undergraduate</li>
+                            <div class="exp-img">
+                                <img src="images/exp/iai1.jpeg">
+                                <img src="images/exp/iai2.jpeg">
+                                <img src="images/exp/iai3.jpeg">
+                            </div>
+                            
                         </ul>
                     </div>
                     
@@ -190,6 +223,11 @@
                             <li>Won Top 3 @ CUCAI 2025</li>
                             <li>Developed an RL-based Traffic Control system using Python</li>
                             <li>Validated performance of a real-world intersection (College St. & University Ave.) in Toronto</li>
+                            <div class="exp-img">
+                                <img src="images/exp/cucai1.jpeg">
+                                <img src="images/exp/cucai2.jpeg">
+                                <img src="images/exp/cucai3.jpeg">
+                            </div>
                         </ul>
                     </div>
                     
@@ -397,7 +435,7 @@
     });
 
     function animateCursor() {
-        const speed = 0.15;
+        const speed = 0.25;
         cursorX += (mouseX - cursorX) * speed;
         cursorY += (mouseY - cursorY) * speed;
         
@@ -426,6 +464,30 @@
         cursorFollower.style.display = 'none';
         document.body.style.cursor = 'auto';
     }
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.exp-img img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+        });
+    });
+
+    document.querySelector('.lightbox-close').addEventListener('click', () => {
+        lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.classList.remove('active');
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') lightbox.classList.remove('active');
+    });
 
 </script>
 
