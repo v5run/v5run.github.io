@@ -1,495 +1,525 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varun Pathak - Portfolio</title>
-    <link rel="icon" type="image/png" href="images/signature.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/b5cbfcba44.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>varun pathak — receipt</title>
+<meta name="description" content="varun pathak — software engineering + management co-op student at mcmaster university. experience, projects and contact, printed as one long receipt.">
+<link rel="icon" type="image/png" href="images/signature.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.className = 'js';</script>
 </head>
-
 <body>
 
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close">✕</span>
-        <img id="lightbox-img" src="" alt="">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><path d="M3 6.5l9 6.5 9-6.5"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M9.2 20.5c-4 1.2-4-2.1-5.6-2.5m11.2 5v-3.4c0-1 .1-1.4-.5-2 2.6-.3 5-1.3 5-5.6a4.3 4.3 0 0 0-1.2-3 4 4 0 0 0-.1-3s-1-.3-3.2 1.2a11 11 0 0 0-5.7 0C6.9 4.7 5.9 5 5.9 5a4 4 0 0 0-.1 3 4.3 4.3 0 0 0-1.2 3c0 4.3 2.4 5.3 5 5.6-.6.6-.6 1.2-.5 2v3.4"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="2"/><path d="M7 10.5v7M7 7.2v.1M11.5 17.5v-4a2.5 2.5 0 0 1 5 0v4M11.5 10.5v7"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.6 6.4v.1"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2.5h8l4.5 4.5v14.5H6z"/><path d="M14 2.5V7h4.5"/><path d="M9 12h6M9 15.5h6M9 19h4"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 15v5h-5M20 9V4h-5M4 15v5h5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+</defs></svg>
+
+<!-- paper grain + ink trail -->
+<div class="grain" aria-hidden="true"></div>
+<canvas id="ink" aria-hidden="true"></canvas>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-label" id="cursor-label" aria-hidden="true"></div>
+
+<!-- ============ PRINTER HEAD (fixed) ============ -->
+<div class="printer" aria-hidden="true">
+  <div class="slot-shadow"></div>
+  <div class="slot">
+    <div class="rollers" id="rollers"></div>
+  </div>
+  <div class="printer-inner">
+    <div class="printer-label">
+      <span class="led"></span>
+      <span class="pl-name">v5run thermal · mdl&nbsp;2026</span>
     </div>
-
-    <div class="cursor-follower"></div>
-
-    <div id="header">
-        <div class="container"> 
-            <nav>
-                <div class="logo-wrapper">
-                    <img src="images/signature.png" class="logo">
-                    <span class="heart-animation">♡</span>
-                </div>
-                
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                        <span class="icon-sun"></span>
-                        <span class="icon-moon"></span>
-                    </button></li>
-                </ul>
-            </nav>
-            
-            <div class="header-content">
-                <div class="header-text">
-                    <p class="intro-label">Let's get to work...</p>
-                    <h1><span>Software Engineering IV</span> + Management Co-Op Student @ <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a></h1>
-                    <p class="header-subtitle">Building intelligent systems & solving complex problems</p>
-                </div>
-            </div>
-        </div>
+    <div class="printer-status">
+      <span id="now-printing">printing…</span>
+      <span class="sep">·</span>
+      <span id="line-count">line 0000</span>
     </div>
-
-<!------------------ ABOUT ---------------------------->
-
-<div id="about">
-    <div class="container">
-        <div class="row">
-            <div class="about-col-1">
-                <div class="about-images">
-                    <img src="images/me2.jpeg" class="about-img-main">
-                    <img src="images/me.JPG" class="about-img-secondary">
-                </div>
-            </div>
-            <div class="about-col-2">
-                <h1 class="subtitle1">About me</h1>
-                <p>Hi there! My name is <span>Varun Pathak</span> and I am currently an undergraduate co-op student at <span>McMaster University</span> in Hamilton, ON. 
-                    In the past, I have developed hobbies in YouTube and Streaming while learning how to edit videos, coding and programming in a variety of languages and frameworks, as well as gaining a liking to problem solving and critical thinking! 
-                    On the side, outside of the university, you will see me on the <span>badminton</span> court, at the <span>gym</span>, focusing on <span>self-improvement</span>, or relaxing with some friends and family!</p>
-
-                <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('skills')">Languages</p>
-                    <p class="tab-links" onclick="opentab('platforms')">Platforms/Tools</p>
-                    <p class="tab-links" onclick="opentab('education')">Education</p>
-                    <p class="tab-links" onclick="opentab('awards')">Awards</p>
-                </div>
-                <div class="tab-contents active-tab" id="skills">
-                    <ul>
-                        <li><span>Python</span></li>
-                        <li><span>Java</span></li>
-                        <li><span>SQL</span></li>
-                        <li><span>Bash/Unix</span></li>
-                        <li><span>HTML/CSS/JavaScript</span></li>
-                        <li><span>R</span></li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="platforms">
-                    <ul>
-                        <li><span>Google Agent Development Kit (ADK)</span></li>
-                        <li><span>Bitbucket</span></li>
-                        <li><span>Jira & Confluence</span></li>
-                        <li><span>Google Cloud Platform (GCP)</span></li>
-                        <li><span>Git & GitHub</span></li>
-                        <li><span>AWS (S3, IAM)</span></li>
-                        <li><span>React/React Native</span></li>
-                        <li><span>Maven</span></li>
-                        <li><span>MongoDB & PostgreSQL</span></li>
-                        <li><span>Firebase (Auth, Firestore)</span></li>
-                        <li><span>Supabase</span></li>
-                        <li><span>Apache Log4j</span></li>
-                        <li><span>Office 365 (Excel)</span></li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="education">
-                    <ul>
-                        <li><span>McMaster University, Hamilton, ON</span><br>Software Engineering & Management Co-op (B.Eng.Mgt.)<br>Expected Graduation: May 2028 • CGPA: 3.8/4.0<br>Dean's Honors List (2023-Present)</li>
-                        <li><span>St. Thomas Aquinas CSS, Oakville, ON</span><br>Class of 2022, Ontario Scholar (96.7% average)</li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="awards">
-                    <ul>
-                        <li><span>Top 5 @ Carnegie Mellon University - Feb 2026</span><br>TartanHacks, Pittsburgh's largest hackathon (270+ projects, >1050 Hackers)</li>
-                        <li><span>Winner @ DeltaHacks XII - Jan 2026</span><br>Canada's largest student-run hackathon (200+ projects, >600 Hackers)</li>
-                        <li><span>Faculty of Engineering Award of Excellence - 2022</span><br>$3000 + 2nd year stream selection</li>
-                        <li><span>Oakville Rotary Education Award - 2022</span><br>$2000</li>
-                        <li><span>DELF French Certificate - 2022</span><br>Level B1</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 
-<!------------------ EXPERIENCE TIMELINE ---------------------------->
+<!-- ============ SIDE INDEX (fixed, wide screens) ============ -->
+<nav class="index" aria-label="sections">
+  <p class="index-title">contents</p>
+  <ul>
+    <li><a href="#about" data-jump><span>about</span><i></i><em>01</em></a></li>
+    <li><a href="#stack" data-jump><span>stack</span><i></i><em>02</em></a></li>
+    <li><a href="#experience" data-jump><span>experience</span><i></i><em>03</em></a></li>
+    <li><a href="#projects" data-jump><span>projects</span><i></i><em>04</em></a></li>
+    <li><a href="#total" data-jump><span>total / awards</span><i></i><em>05</em></a></li>
+    <li><a href="#contact" data-jump><span>contact</span><i></i><em>06</em></a></li>
+  </ul>
+  <div class="feed-meter" aria-hidden="true"><div class="feed-fill" id="feed-fill"></div></div>
+</nav>
 
-<div id="experience">
-    <div class="container">
-        <h1 class="subtitle2">Experience Timeline</h1>
-        
-        <div class="timeline-wrapper">
-            <div class="timeline-left">
-                <div class="timeline-container">
-                    <div class="timeline">
-                        <div class="timeline-item active" data-experience="hdc">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">May 2026 - Present</div>
-                            <div class="timeline-content">
-                                <h4>Data Scientist</h4>
-                                <p class="timeline-company">The Home Depot Canada</p>
-                            </div>
-                        </div>
+<!-- ============ THE RECEIPT ============ -->
+<div class="tear" aria-hidden="true"></div>
 
-                        <div class="timeline-item" data-experience="ai">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Oct 2025 - Mar 2026</div>
-                            <div class="timeline-content">
-                                <h4>AI Engineer</h4>
-                                <p class="timeline-company">MacAI</p>
-                            </div>
-                        </div>
+<main class="receipt" id="receipt">
 
-                        <div class="timeline-item" data-experience="ia">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Sept 2025 - Apr 2026</div>
-                            <div class="timeline-content">
-                                <h4>Instructional Assistant Intern</h4>
-                                <p class="timeline-company">McMaster University</p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item" data-experience="ml">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Oct 2024 - Mar 2025</div>
-                            <div class="timeline-content">
-                                <h4>ML Engineer</h4>
-                                <p class="timeline-company">MacAI</p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item" data-experience="tutor">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Sept 2023 - Feb 2025</div>
-                            <div class="timeline-content">
-                                <h4>Teaching Assistant</h4>
-                                <p class="timeline-company">Ask Tutors</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="timeline-right">
-                <div class="experience-details">
-                    <div class="experience-panel active" id="exp-hdc">
-                        <h4>Data Scientist</h4>
-                        <p class="exp-company">The Home Depot Canada • May 2026 - Present</p>
-                        <ul class="exp-highlights">
-                            <li>Building Ask Homer, an agentic AI tool for Home Depot's myToolBelt platform</li>
-                        </ul>
-                    </div>
+  <!-- ---------- head ---------- -->
+  <header class="r-head">
+    <p class="tiny rise">*** original copy · keep for your records ***</p>
+    <h1 class="rise"><span class="type" data-type>hi, my name's varun.</span></h1>
+    <p class="sub rise"><b>software engineering + management</b></p>
+    <p class="sub rise">co-op student · mcmaster university</p>
+    <p class="tiny rise">www.varun.study</p>
 
-                    <div class="experience-panel" id="exp-ai">
-                        <h4>AI Engineer</h4>
-                        <p class="exp-company">McMaster Artificial Intelligence Society • Oct 2025 - Mar 2026</p>
-                        <ul class="exp-highlights">
-                            <li>Developed human-guided MARL frameworks (34% improvement)</li>
-                            <li>Designed custom simulation environments in Python</li>
-                            <li>Conducted 200+ training trials for policy optimization</li>
-                        </ul>
-                    </div>
+    <svg class="rule draw" viewBox="0 0 520 8" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M4 4.6 C 90 2.4, 170 6.2, 262 3.8 S 430 5.6, 516 3.4" />
+    </svg>
 
-                    <div class="experience-panel" id="exp-ia">
-                        <h4>Instructional Assistant Intern</h4>
-                        <p class="exp-company">McMaster University • Sept 2025 - Apr 2026</p>
-                        <ul class="exp-highlights">
-                            <li>Led Python, Autodesk Inventor (CAD), & Design project labs for 500+ students weekly, spanning over 1000 first-year engineering students</li>
-                            <li>Built an automation utility with Python saving 80% manual review time</li>
-                            <li>Supervised 60+ TAs and coordinated grading workflows as an undergraduate</li>
-                            <div class="exp-img">
-                                <img src="images/exp/iai1.jpeg">
-                                <img src="images/exp/iai2.jpeg">
-                                <img src="images/exp/iai3.jpeg">
-                            </div>
-                            
-                        </ul>
-                    </div>
-                    
-                    <div class="experience-panel" id="exp-ml">
-                        <h4>Machine Learning Engineer</h4>
-                        <p class="exp-company">McMaster Artificial Intelligence Society • Oct 2024 - Mar 2025</p>
-                        <ul class="exp-highlights">
-                            <li>Won Top 3 @ CUCAI 2025</li>
-                            <li>Developed an RL-based Traffic Control system using Python</li>
-                            <li>Validated performance of a real-world intersection (College St. & University Ave.) in Toronto</li>
-                            <div class="exp-img">
-                                <img src="images/exp/cucai1.jpeg">
-                                <img src="images/exp/cucai2.jpeg">
-                                <img src="images/exp/cucai3.jpeg">
-                            </div>
-                        </ul>
-                    </div>
-                    
-                    <div class="experience-panel" id="exp-tutor">
-                        <h4>Teaching Assistant</h4>
-                        <p class="exp-company">Ask Tutors • Sept 2023 - Feb 2025</p>
-                        <ul class="exp-highlights">
-                            <li>Tutoring students internationally (Canada, United States, Dubai, India)</li>
-                            <li>Explained topics in Computer Science, AP/IB/HL Mathematics, AP/IB Physics, & AP Economics</li>
-                            <li>In-person + Online, maintaining 12+ students concurrently, each week</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="meta rise">
+      <div class="line"><span>order no.</span><i></i><span id="order-no">#2026-0905</span></div>
+      <div class="line"><span>printed</span><i></i><span id="printed-at">—</span></div>
+      <div class="line"><span>based in</span><i></i><span>toronto, on</span></div>
+      <div class="line"><span>currently</span><i></i><span>ai/data @ the home depot canada</span></div>
+      <div class="line"><span>status</span><i></i><span>seeking summer 2027 internships</span></div>
     </div>
+
+    <p class="scroll-cue rise" aria-hidden="true">scroll to print <span class="arr">↓</span></p>
+  </header>
+
+  <div class="dashed" aria-hidden="true"></div>
+
+  <!-- ---------- 01 about ---------- -->
+  <section id="about" class="sec" data-name="about">
+    <h2 class="rise"><em>01</em> <span class="type" data-type>about</span></h2>
+    <svg class="squiggle draw" viewBox="0 0 160 10" aria-hidden="true">
+      <path d="M3 7 C 26 1.5, 44 8.5, 66 5 S 108 1.6, 130 6.2 S 150 7.4, 157 4.4" />
+    </svg>
+
+    <div class="photo-row rise">
+      <figure class="photo">
+        <img src="images/me3.jpeg" alt="varun pathak" loading="lazy" data-zoom="fig. 1 — me">
+        <figcaption>fig. 1 — me</figcaption>
+      </figure>
+      <p class="body">
+        hi there! right now i'm eager to learn as much as i can about <b>ai/ml engineering</b> and what it
+        takes to run <b>llms in production</b> — the orchestration, retrieval and evaluation work
+        that sits between a demo and something people actually rely on. i've programmed in a
+        variety of languages and frameworks along the way, and what keeps me going is the
+        <b>problem solving</b> and <b>critical thinking</b>!
+      </p>
+    </div>
+    <p class="body rise">
+      on the side, outside of the university, you will see me on the <b>badminton</b> court, at the
+      <b>gym</b>, focusing on <b>self-improvement</b>, or relaxing with some friends and family!
+    </p>
+  </section>
+
+  <div class="dashed" aria-hidden="true"></div>
+
+  <!-- ---------- 02 stack ---------- -->
+  <section id="stack" class="sec" data-name="stack">
+    <h2 class="rise"><em>02</em> <span class="type" data-type>stack</span></h2>
+    <svg class="squiggle draw" viewBox="0 0 160 10" aria-hidden="true">
+      <path d="M3 6.4 C 24 2, 46 8.8, 70 4.8 S 112 2.2, 132 6.6 S 151 6.8, 157 4" />
+    </svg>
+
+    <div class="line head rise"><span>languages</span><i></i><span>6 items</span></div>
+    <ul class="items rise">
+      <li>python</li><li>java</li><li>sql</li>
+      <li>javascript</li><li>bash / unix</li><li>c / c++</li>
+    </ul>
+
+    <div class="line head rise"><span>frameworks &amp; libraries</span><i></i><span>12 items</span></div>
+    <ul class="items rise">
+      <li>langgraph</li>
+      <li>langchain</li>
+      <li>google adk</li>
+      <li>llamaindex</li>
+      <li>openai</li>
+      <li>pydantic</li>
+      <li>pandas</li>
+      <li>numpy</li>
+      <li>scikit-learn</li>
+      <li>matplotlib</li>
+      <li>asyncio</li>
+      <li>requests</li>
+    </ul>
+
+    <div class="line head rise"><span>platforms &amp; infrastructure</span><i></i><span>16 items</span></div>
+    <ul class="items rise">
+      <li>google cloud platform (gcp)</li>
+      <li>aws</li>
+      <li>postgresql</li>
+      <li>mongodb</li>
+      <li>supabase</li>
+      <li>pgvector</li>
+      <li>chromadb</li>
+      <li>pinecone</li>
+      <li>faiss</li>
+      <li>docker</li>
+      <li>kubernetes</li>
+      <li>jupyter</li>
+      <li>apache</li>
+      <li>git</li>
+      <li>github</li>
+      <li>bitbucket</li>
+    </ul>
+
+    <div class="line head rise"><span>education</span><i></i><span>2 items</span></div>
+    <div class="entry rise">
+      <div class="line"><span class="strong">mcmaster university</span><i></i><span>2022 — 2028</span></div>
+      <p class="note">b.eng.mgt · software engineering &amp; management co-op · hamilton, on</p>
+      <p class="note">cgpa 3.8/4.0 · dean's honours list</p>
+    </div>
+    <div class="entry rise">
+      <div class="line"><span class="strong">st. thomas aquinas css</span><i></i><span>class of 2022</span></div>
+      <p class="note">ontario scholar · 96.7% average · oakville, on</p>
+    </div>
+  </section>
+
+  <div class="dashed" aria-hidden="true"></div>
+
+  <!-- ---------- 03 experience ---------- -->
+  <section id="experience" class="sec" data-name="experience">
+    <h2 class="rise"><em>03</em> <span class="type" data-type>experience</span></h2>
+    <svg class="squiggle draw" viewBox="0 0 160 10" aria-hidden="true">
+      <path d="M3 5.8 C 22 9, 48 1.8, 72 6 S 110 8.4, 130 3.8 S 150 4.6, 157 6.2" />
+    </svg>
+
+    <p class="acc-all rise"><button id="expand-all" class="mini" data-cursor="open all">[ expand all ]</button></p>
+
+    <div class="acc" id="exp-acc">
+      <article class="acc-item rise is-open">
+        <button class="acc-head" aria-expanded="true" aria-controls="exp-hdc" data-cursor="collapse">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="acc-body">
+            <span class="line"><span class="strong">data scientist</span><i></i><span>may 2026 — present</span></span>
+            <span class="note">the home depot · toronto, on</span>
+          </span>
+        </button>
+        <div class="acc-panel" id="exp-hdc" role="region">
+          <div class="acc-inner">
+            <div class="acc-content">
+              <ul class="bullets">
+                <li>enhanced a production-grade <b>agentic ai</b> chatbot used by <b>30,000+ users</b> — google adk, multi-agent orchestration, llm-backed reasoning, mcp tool-calling and stateful session management</li>
+                <li>owned <b>0-to-1</b> development of scalable llm applications and reusable agentic microservices across cloud-based genai pipelines</li>
+                <li>built end-to-end <b>rag</b> pipelines with llamaindex and iterative prompt engineering, grounding outputs in domain-specific enterprise data to cut hallucination risk in production</li>
+                <li>led a product compatibility poc: a semantic search pipeline over vector embeddings, cloud sql and ontology modeling — presented findings and secured approval for production</li>
+                <li>designed and owned <b>apache airflow</b> etl dags ingesting raw web-sourced data into bigquery &amp; postgresql via apache beam pipelines</li>
+                <li>partnered with directors and cross-functional engineering, product and operations teams, presenting to <b>vp leadership</b> and driving <b>100%</b> of scoped initiatives into production + pilot</li>
+                <li><b>started as an intern</b> (may-aug), <b>hired back as a contractor :)</b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="acc-item rise">
+        <button class="acc-head" aria-expanded="false" aria-controls="exp-ia" data-cursor="expand">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="acc-body">
+            <span class="line"><span class="strong">instructional assistant intern</span><i></i><span>sept 2025 — apr 2026</span></span>
+            <span class="note">mcmaster university · hamilton, on</span>
+          </span>
+        </button>
+        <div class="acc-panel" id="exp-ia" role="region">
+          <div class="acc-inner">
+            <div class="acc-content">
+              <ul class="bullets">
+                <li>led python and engineering design (autodesk inventor) labs and tutorials for <b>600+ students weekly</b>, with personalized support during office hours</li>
+                <li>built a python automation utility that flagged potential academic dishonesty by scanning <b>1100+ autodesk inventor files</b> for metadata irregularities, saving <b>80%+ manual review time</b></li>
+                <li>supervised a team of <b>90+ teaching assistants</b>, coordinated grading duties and ran weekly meetings to keep marking consistent</li>
+              </ul>
+              <div class="strip">
+                <img src="images/exp/iai1.jpeg" alt="teaching lab · mcmaster" loading="lazy" data-zoom="1p13 exam final review · mcmaster" data-cursor="expand">
+                <img src="images/exp/iai2.jpeg" alt="teaching lab · mcmaster" loading="lazy" data-zoom="the students · mcmaster" data-cursor="expand">
+                <img src="images/exp/iai3.jpeg" alt="teaching lab · mcmaster" loading="lazy" data-zoom="1p13 team + showcase · mcmaster" data-cursor="expand">
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="acc-item rise">
+        <button class="acc-head" aria-expanded="false" aria-controls="exp-ai" data-cursor="expand">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="acc-body">
+            <span class="line"><span class="strong">machine learning engineer</span><i></i><span>oct 2025 — mar 2026</span></span>
+            <span class="note">mcmaster artificial intelligence society (macai) · hamilton, on</span>
+          </span>
+        </button>
+        <div class="acc-panel" id="exp-ai" role="region">
+          <div class="acc-inner">
+            <div class="acc-content">
+              <ul class="bullets">
+                <li>collaborated with a multidisciplinary research team alongside dr. istvan david on human-guided multi-agent reinforcement learning (marl) frameworks, improving coordination and decision-making across agents in simulated environments</li>
+                <li>designed and implemented custom marl simulation environments in python to test policy and reward shaping, reaching <b>faster convergence</b> than unguided baselines</li>
+                <li>ran <b>200+ training trials</b> comparing unguided vs. human-guided marl, showing <b>higher collective task success</b> and better stability on cooperative tasks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="acc-item rise">
+        <button class="acc-head" aria-expanded="false" aria-controls="exp-ml" data-cursor="expand">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="acc-body">
+            <span class="line"><span class="strong">software developer</span><i></i><span>oct 2024 — mar 2025</span></span>
+            <span class="note">mcmaster artificial intelligence society (macai) · hamilton, on</span>
+          </span>
+        </button>
+        <div class="acc-panel" id="exp-ml" role="region">
+          <div class="acc-inner">
+            <div class="acc-content">
+              <ul class="bullets">
+                <li><b>top 3 @ cucai 2025</b></li>
+                <li>developed an rl-based traffic control system using python</li>
+                <li>validated performance on a real-world intersection (college st. &amp; university ave.) in toronto</li>
+              </ul>
+              <div class="strip">
+                <img src="images/exp/cucai1.jpeg" alt="cucai 2025" loading="lazy" data-zoom="cucai 2025" data-cursor="expand">
+                <img src="images/exp/cucai2.jpeg" alt="cucai 2025" loading="lazy" data-zoom="cucai 2025" data-cursor="expand">
+                <img src="images/exp/cucai3.jpeg" alt="trafficlightrl results" loading="lazy" data-zoom="trafficlightrl results" data-cursor="expand">
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="acc-item rise">
+        <button class="acc-head" aria-expanded="false" aria-controls="exp-ta" data-cursor="expand">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="acc-body">
+            <span class="line"><span class="strong">teaching assistant</span><i></i><span>sept 2023 — feb 2025</span></span>
+            <span class="note">ask tutors</span>
+          </span>
+        </button>
+        <div class="acc-panel" id="exp-ta" role="region">
+          <div class="acc-inner">
+            <div class="acc-content">
+              <ul class="bullets">
+                <li>tutored students internationally (canada, united states, dubai, india)</li>
+                <li>explained computer science, ap/ib/hl mathematics, ap/ib physics &amp; ap economics</li>
+                <li>in-person + online, maintaining <b>12+ students</b> concurrently each week</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="dashed" aria-hidden="true"></div>
+
+  <!-- ---------- 04 projects ---------- -->
+  <section id="projects" class="sec" data-name="projects">
+    <h2 class="rise"><em>04</em> <span class="type" data-type>projects</span></h2>
+    <svg class="squiggle draw" viewBox="0 0 160 10" aria-hidden="true">
+      <path d="M3 6 C 25 2.2, 44 9, 68 5.4 S 106 2, 128 6.8 S 149 7, 157 4.2" />
+    </svg>
+
+    <a class="proj rise" href="https://github.com/v5run/yf-forecast" target="_blank" rel="noopener">
+      <span class="proj-noshot" aria-hidden="true">py</span>
+      <div class="proj-body">
+        <div class="line"><span class="strong">stock forecaster</span><i></i><span>python</span></div>
+        <p class="note">probabilistic forecasts of next-day / next-week stock log-returns with calibrated confidence intervals · in progress</p>
+        <p class="tiny">python · xgboost · redis · mlflow · walk-forward validation vs. arima + persistence baselines</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+
+    <a class="proj rise" href="https://github.com/v5run/BAIMAX" target="_blank" rel="noopener">
+      <img src="images/BAIMAX.png" alt="baimax" loading="lazy" data-zoom="baimax">
+      <div class="proj-body">
+        <div class="line"><span class="strong">baimax</span><i></i><span>swift</span></div>
+        <p class="note">biometric &amp; ai-driven medical assistance exchange</p>
+        <p class="tiny">swift · xcode · firebase · arduino</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+
+    <a class="proj rise" href="https://github.com/v5run/papertrail" target="_blank" rel="noopener">
+      <img src="images/paperTrail_landing.png" alt="papertrail" loading="lazy" data-zoom="papertrail">
+      <div class="proj-body">
+        <div class="line"><span class="strong">papertrail</span><i></i><span>flask</span></div>
+        <p class="note">ai receipt management system</p>
+        <p class="tiny">flask · tesseract ocr · postgresql · aws s3</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+
+    <a class="proj rise" href="https://github.com/McMasterAI-Society/TrafficLightRL" target="_blank" rel="noopener">
+      <img src="images/trafficRL.png" alt="trafficlightrl" loading="lazy" data-zoom="trafficlightrl">
+      <div class="proj-body">
+        <div class="line"><span class="strong">trafficlightrl</span><i></i><span>python</span></div>
+        <p class="note">reinforcement learning for traffic signal control</p>
+        <p class="tiny">python · sumo · stablebaselines3</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+
+    <a class="proj rise" href="https://github.com/v5run/eden" target="_blank" rel="noopener">
+      <img src="images/eden2.jpg" alt="garden of eden" loading="lazy" data-zoom="garden of eden">
+      <div class="proj-body">
+        <div class="line"><span class="strong">garden of eden</span><i></i><span>java</span></div>
+        <p class="note">a blockchain, from scratch</p>
+        <p class="tiny">java · mongodb · bouncycastle</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+
+    <a class="proj rise" href="https://github.com/v5run/a3-maze-runner-take-two-v5run" target="_blank" rel="noopener">
+      <img src="images/mazerunner.jpg" alt="maze runner" loading="lazy" data-zoom="maze runner">
+      <div class="proj-body">
+        <div class="line"><span class="strong">maze runner</span><i></i><span>java</span></div>
+        <p class="note">maze solving algorithms</p>
+        <p class="tiny">java · dsa · solid principles</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+
+    <a class="proj rise" href="https://github.com/v5run/DiceArt.io" target="_blank" rel="noopener">
+      <img src="images/diceart.png" alt="diceart.io" loading="lazy" data-zoom="diceart.io">
+      <div class="proj-body">
+        <div class="line"><span class="strong">diceart.io</span><i></i><span>python</span></div>
+        <p class="note">photos, rebuilt out of dice</p>
+        <p class="tiny">python (pil) · streamlit</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+
+    <a class="proj rise" href="https://github.com/v5run/v5run.github.io" target="_blank" rel="noopener">
+      <img src="images/webss.png" alt="varun.study" loading="lazy" data-zoom="varun.study">
+      <div class="proj-body">
+        <div class="line"><span class="strong">varun.study</span><i></i><span>web</span></div>
+        <p class="note">this receipt</p>
+        <p class="tiny">html · css · javascript</p>
+      </div>
+      <span class="go">→</span>
+    </a>
+  </section>
+
+  <div class="dashed" aria-hidden="true"></div>
+
+  <!-- ---------- 05 total / awards ---------- -->
+  <section id="total" class="sec" data-name="total / awards">
+    <h2 class="rise"><em>05</em> <span class="type" data-type>total / awards</span></h2>
+    <svg class="squiggle draw" viewBox="0 0 160 10" aria-hidden="true">
+      <path d="M3 5 C 28 8.6, 46 2, 70 6.4 S 108 8.8, 130 4 S 150 5, 157 6.6" />
+    </svg>
+
+    <div class="total-box rise">
+      <svg class="box-draw draw" viewBox="0 0 480 520" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M64 12 C 180 7, 330 15, 470 9 C 475 130, 473 380, 469 510 C 320 515, 150 506, 11 511
+                 C 6 380, 7 140, 10 11 C 26 8, 46 13, 96 10" />
+      </svg>
+      <div class="total-inner">
+        <div class="entry rise">
+          <div class="line"><a class="strong award-link" href="https://www.linkedin.com/posts/v5run_carnegiemellonuniversity-tartanhacks-ugcPost-7428096490989867008-96Pf/" target="_blank" rel="noopener" data-cursor="see the post ↗">top 5 @ tartanhacks ↗</a><i></i><span>feb 2026</span></div>
+          <p class="note">carnegie mellon university · top 5 of 279 projects, 1,100+ participants</p>
+          <p class="note">a passive networking app that connects like-minded people in the background over
+             bluetooth mesh, using vector-based matching to surface who's worth meeting in a crowd ·
+             python · fastapi · react native · supabase</p>
+        </div>
+        <div class="entry rise">
+          <div class="line"><a class="strong award-link" href="https://www.linkedin.com/posts/v5run_deltahacks-hackathon-iosdevelopment-activity-7417913600004112384-EPIj" target="_blank" rel="noopener" data-cursor="see the post ↗">winner @ deltahacks xii ↗</a><i></i><span>jan 2026</span></div>
+          <p class="note">canada's largest student-run hackathon (200+ projects, 600+ hackers)</p>
+        </div>
+        <div class="entry rise">
+          <div class="line"><a class="strong award-link" href="https://www.linkedin.com/posts/v5run_cucai-macai-reinforcementlearning-activity-7307577890554974209-mDyJ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD5X5JEB5y6-E1qBozlYcEJbKmUAg5Dcwyw" target="_blank" rel="noopener" data-cursor="see the post ↗">top 3 environmental @ cucai 2025 ↗</a><i></i><span>2025</span></div>
+          <p class="note">canadian undergraduate conference on ai · trafficlightrl</p>
+        </div>
+        <div class="entry rise">
+          <div class="line"><span class="strong">faculty of engineering award of excellence</span><i></i><span>2022</span></div>
+          <p class="note">$3,000 + second year stream selection</p>
+        </div>
+        <div class="entry rise">
+          <div class="line"><span class="strong">oakville rotary education award</span><i></i><span>2022</span></div>
+          <p class="note">$2,000</p>
+        </div>
+        <div class="entry rise">
+          <div class="line"><span class="strong">delf french certificate</span><i></i><span>2022</span></div>
+          <p class="note">level b1</p>
+        </div>
+
+        <div class="dashed thin" aria-hidden="true"></div>
+        <div class="line big rise"><span>total</span><i></i><span>still counting</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dashed" aria-hidden="true"></div>
+
+  <!-- ---------- 06 contact ---------- -->
+  <section id="contact" class="sec" data-name="contact">
+    <h2 class="rise"><em>06</em> <span class="type" data-type>contact</span></h2>
+    <svg class="squiggle draw" viewBox="0 0 160 10" aria-hidden="true">
+      <path d="M3 6.6 C 26 2.6, 45 8.2, 68 4.6 S 110 2.8, 131 7 S 150 6.2, 157 3.8" />
+    </svg>
+
+    <div class="lines rise">
+      <div class="line"><span class="lbl"><svg class="ic"><use href="#i-mail"/></svg>email</span><i></i><a href="mailto:pathav4@mcmaster.ca">pathav4@mcmaster.ca</a></div>
+      <div class="line"><span class="lbl"><svg class="ic"><use href="#i-github"/></svg>github</span><i></i><a href="https://github.com/v5run/" target="_blank" rel="noopener">@v5run</a></div>
+      <div class="line"><span class="lbl"><svg class="ic"><use href="#i-linkedin"/></svg>linkedin</span><i></i><a href="https://www.linkedin.com/in/v5run/" target="_blank" rel="noopener">in/v5run</a></div>
+      <div class="line"><span class="lbl"><svg class="ic"><use href="#i-instagram"/></svg>instagram</span><i></i><a href="https://www.instagram.com/v5run/" target="_blank" rel="noopener">@v5run</a></div>
+      <div class="line"><span class="lbl"><svg class="ic"><use href="#i-doc"/></svg>resume</span><i></i><a href="images/resume.pdf" target="_blank" rel="noopener">resume.pdf ↗</a></div>
+    </div>
+
+    <form class="note-form rise" action="https://formspree.io/f/meellzqw" method="POST">
+      <p class="tiny">— or leave a note —</p>
+      <label class="field">
+        <span>name</span>
+        <input type="text" name="Name" placeholder="your name" required autocomplete="name">
+      </label>
+      <label class="field">
+        <span>email</span>
+        <input type="email" name="Email" placeholder="you@example.com" required autocomplete="email">
+      </label>
+      <label class="field col">
+        <span>note</span>
+        <textarea name="Message" rows="3" placeholder="say hi…"></textarea>
+      </label>
+      <button type="submit" class="send">
+        <span>send</span>
+        <svg class="btn-box" viewBox="0 0 140 44" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M5 7 C 45 3, 95 11, 135 6 C 137 18, 136 30, 134 38 C 95 42, 45 34, 6 39 C 3 28, 4 16, 5 7 Z"/>
+        </svg>
+      </button>
+    </form>
+  </section>
+
+  <!-- ---------- footer ---------- -->
+  <footer class="r-foot">
+    <div class="dashed" aria-hidden="true"></div>
+    <p class="tiny rise">*** thank you for scrolling ***</p>
+    <p class="tiny rise">no refunds · no returns · all opinions final</p>
+    <div class="barcode rise" id="barcode" aria-hidden="true">
+      <img class="sig-mark" src="images/signature.png" alt="varun pathak's signature">
+    </div>
+    <p class="tiny rise" id="barcode-no">v5run · varun.study · 2026</p>
+    <p class="tiny rise">© 2026 varun pathak</p>
+    <button class="reprint rise" id="reprint">↑ print again</button>
+  </footer>
+
+</main>
+
+<!-- ============ IMAGE VIEWER ============ -->
+<div class="lb" id="lightbox" hidden>
+  <button class="lb-close" id="lb-close" aria-label="close"><svg><use href="#i-close"/></svg></button>
+  <figure class="lb-figure">
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
 </div>
 
-<!-------------------------------PORTFOLIO------------------------------------------->
-
-<div id="portfolio">
-    <div class="container">
-        <h1 class="subtitle2">My Portfolio</h1>
-        <div class="project-list">
-            <div class="project">
-                <img src="images/BAIMAX.png">
-                <div class="layer">
-                    <h3>BAIMAX - Biometric & AI-Driven Medical Assistance eXchange</h3>
-                    <p>Created with: Swift, XCode, Firebase, & Arduino</p>
-                    <a href="https://github.com/v5run/BAIMAX"><i class="fa-brands fa-github"></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="images/paperTrail_landing.png">
-                <div class="layer">
-                    <h3>PaperTrail - AI Receipt Management System</h3>
-                    <p>Created with: Flask, Tesseract OCR, PostgreSQL, & AWS S3</p>
-                    <a href="https://github.com/v5run/papertrail"><i class="fa-brands fa-github"></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="images/trafficRL.png">
-                <div class="layer">
-                    <h3>TrafficLightRL</h3>
-                    <p>Created with: Python, SUMO, & StableBaselines3</p>
-                    <a href="https://github.com/McMasterAI-Society/TrafficLightRL"><i class="fa-brands fa-github"></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="images/eden2.jpg">
-                <div class="layer">
-                    <h3>Garden of Eden - Blockchain</h3>
-                    <p>Created with: Java, MongoDB, & BouncyCastle</p>
-                    <a href="https://github.com/v5run/eden"><i class="fa-brands fa-github"></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="images/mazerunner.jpg">
-                <div class="layer">
-                    <h3>"Maze Runner" - Maze Solving Algorithms</h3>
-                    <p>Created with: Java, DSA, & SOLID Principles</p>
-                    <a href="https://github.com/v5run/a3-maze-runner-take-two-v5run"><i class="fa-brands fa-github"></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="images/diceart.png">
-                <div class="layer">
-                    <h3>DiceArt.io</h3>
-                    <p>Created with: Python (PIL) & Streamlit</p>
-                    <a href="https://github.com/v5run/DiceArt.io"><i class="fa-brands fa-github"></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="images/webss.png">
-                <div class="layer">
-                    <h3>Personal Portfolio/Website</h3>
-                    <p>Created with: HTML, CSS, & JS</p>
-                    <a href="https://github.com/v5run/v5run.github.io"><i class="fa-brands fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-----------------------------------CONTACT------------------------------------------------------------------------>
-
-<div id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="contact-left">
-                <h1 class="subtitle2">Contact Me</h1>
-                <p><i class="fa-solid fa-paper-plane"></i>pathav4@mcmaster.ca</p>
-                <div class="social-icons">
-                    <a href="https://github.com/v5run/" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/v5run/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/v5run/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-                <a href="/images/resume.pdf" target="_blank" class="btn">Download CV</a>
-            </div>
-            <div class="contact-right">
-                <form action="https://formspree.io/f/meellzqw" method="POST">
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="Email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="5" placeholder="Your Message"></textarea>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <p>© 2026 Varun Pathak (v5run)</p>
-    </div>
-</div>
-
-<script>
-        // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.querySelector('.theme-icon');
-    const body = document.body;
-    
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    if (currentTheme === 'dark') {
-        body.classList.add('dark-mode');
-    }
-
-    
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        
-        // Update icon and save preference
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-    });
-
-    // Logo heart animation easter egg
-    const logoWrapper = document.querySelector('.logo-wrapper');
-    const heartAnimation = document.querySelector('.heart-animation');
-    
-    if (logoWrapper && heartAnimation) {
-        logoWrapper.addEventListener('click', () => {
-            // Remove active class if it exists to restart animation
-            heartAnimation.classList.remove('active');
-            
-            // Force reflow to restart animation
-            void heartAnimation.offsetWidth;
-            
-            // Add active class to trigger animation
-            heartAnimation.classList.add('active');
-            
-            // Remove active class after animation completes
-            setTimeout(() => {
-                heartAnimation.classList.remove('active');
-            }, 1200);
-        });
-    }
-
-    // Tab functionality
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab");
-    }
-    
-    // Timeline interaction
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const experiencePanels = document.querySelectorAll('.experience-panel');
-    
-    timelineItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Remove active class from all items
-            timelineItems.forEach(i => i.classList.remove('active'));
-            experiencePanels.forEach(p => p.classList.remove('active'));
-            
-            // Add active class to clicked item
-            item.classList.add('active');
-            
-            // Show corresponding experience panel
-            const expId = 'exp-' + item.dataset.experience;
-            document.getElementById(expId).classList.add('active');
-        });
-    });
-
-    // Custom Cursor
-    const cursorFollower = document.querySelector('.cursor-follower');
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorFollower.classList.add('active');
-    });
-
-    function animateCursor() {
-        const speed = 0.25;
-        cursorX += (mouseX - cursorX) * speed;
-        cursorY += (mouseY - cursorY) * speed;
-        
-        cursorFollower.style.left = cursorX + 'px';
-        cursorFollower.style.top = cursorY + 'px';
-        
-        requestAnimationFrame(animateCursor);
-    }
-
-    animateCursor();
-
-    // Hover effects for interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .project, .timeline-item, input, textarea, .logo-wrapper');
-    interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursorFollower.classList.add('hover');
-        });
-        
-        element.addEventListener('mouseleave', () => {
-            cursorFollower.classList.remove('hover');
-        });
-    });
-
-    // Hide cursor on touch devices
-    if ('ontouchstart' in window) {
-        cursorFollower.style.display = 'none';
-        document.body.style.cursor = 'auto';
-    }
-
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    document.querySelectorAll('.exp-img img').forEach(img => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-        });
-    });
-
-    document.querySelector('.lightbox-close').addEventListener('click', () => {
-        lightbox.classList.remove('active');
-    });
-
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) lightbox.classList.remove('active');
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') lightbox.classList.remove('active');
-    });
-
-</script>
-
+<script src="script.js" defer></script>
 </body>
 </html>
