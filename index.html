@@ -9,7 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<!-- the faces the name might be set in, cut down to just the letters of "varun." —
+     the browser only fetches the one script.js picks -->
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Dancing+Script:wght@700&family=Great+Vibes&family=Kaushan+Script&family=Pinyon+Script&family=Playfair+Display:ital,wght@1,800&family=Yellowtail&text=varun.&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261013p">
 <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
@@ -24,31 +27,13 @@
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
 </defs></svg>
 
-<!-- paper grain + ink trail -->
+<!-- paper grain + ascii desk + ink trail -->
 <div class="grain" aria-hidden="true"></div>
+<canvas id="desk" aria-hidden="true"></canvas>
 <canvas id="ink" aria-hidden="true"></canvas>
 <div class="cursor-ring" aria-hidden="true"></div>
 <div class="cursor-dot" aria-hidden="true"></div>
 <div class="cursor-label" id="cursor-label" aria-hidden="true"></div>
-
-<!-- ============ PRINTER HEAD (fixed) ============ -->
-<div class="printer" aria-hidden="true">
-  <div class="slot-shadow"></div>
-  <div class="slot">
-    <div class="rollers" id="rollers"></div>
-  </div>
-  <div class="printer-inner">
-    <div class="printer-label">
-      <span class="led"></span>
-      <span class="pl-name">v5run thermal · mdl&nbsp;2026</span>
-    </div>
-    <div class="printer-status">
-      <span id="now-printing">printing…</span>
-      <span class="sep">·</span>
-      <span id="line-count">line 0000</span>
-    </div>
-  </div>
-</div>
 
 <!-- ============ SIDE INDEX (fixed, wide screens) ============ -->
 <nav class="index" aria-label="sections">
@@ -65,14 +50,16 @@
 </nav>
 
 <!-- ============ THE RECEIPT ============ -->
-<div class="tear" aria-hidden="true"></div>
+<div class="roll">
+<div class="tear tear-top" aria-hidden="true"><i></i></div>
 
 <main class="receipt" id="receipt">
 
   <!-- ---------- head ---------- -->
   <header class="r-head">
     <p class="tiny rise">*** original copy · keep for your records ***</p>
-    <h1 class="rise"><span class="type" data-type>hi, my name's varun.</span></h1>
+    <h1 class="hello rise"><span class="type" data-type>hi, my name's</span><span class="sr-only"> varun.</span></h1>
+    <div class="dot-name rise" id="dot-name" aria-hidden="true"><span class="dot-name-text">varun.</span></div>
     <p class="sub rise"><b>software engineering + management</b></p>
     <p class="sub rise">co-op student · mcmaster university</p>
     <p class="tiny rise">www.varunp.me</p>
@@ -89,7 +76,12 @@
       <div class="line"><span>status</span><i></i><span>seeking summer 2027 internships</span></div>
     </div>
 
-    <p class="scroll-cue rise" aria-hidden="true">scroll to print <span class="arr">↓</span></p>
+    <a class="send cta rise" href="#contact">
+      <span>contact me <span class="arr" aria-hidden="true">↓</span></span>
+      <svg class="btn-box draw" viewBox="0 0 170 44" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M6 6 C 50 2, 118 10, 164 5 C 167 17, 165 30, 163 39 C 118 43, 52 35, 7 40 C 4 29, 5 17, 6 6 Z"/>
+      </svg>
+    </a>
   </header>
 
   <div class="dashed" aria-hidden="true"></div>
@@ -102,7 +94,7 @@
     </svg>
 
     <div class="photo-row rise">
-      <figure class="photo">
+      <figure class="photo" data-halftone>
         <img src="images/me3.jpeg" alt="varun pathak" loading="lazy" data-zoom="fig. 1 — me">
         <figcaption>fig. 1 — me</figcaption>
       </figure>
@@ -298,7 +290,7 @@
           <span class="mark" aria-hidden="true"></span>
           <span class="acc-body">
             <span class="line"><span class="strong">teaching assistant</span><i></i><span>sept 2023 — feb 2025</span></span>
-            <span class="note">ask tutors</span>
+            <span class="note">ask tutors · remote</span>
           </span>
         </button>
         <div class="acc-panel" id="exp-ta" role="region">
@@ -325,16 +317,6 @@
     <svg class="squiggle draw" viewBox="0 0 160 10" aria-hidden="true">
       <path d="M3 6 C 25 2.2, 44 9, 68 5.4 S 106 2, 128 6.8 S 149 7, 157 4.2" />
     </svg>
-
-    <a class="proj rise" href="https://github.com/v5run/yf-forecast" target="_blank" rel="noopener">
-      <span class="proj-noshot" aria-hidden="true">py</span>
-      <div class="proj-body">
-        <div class="line"><span class="strong">stock forecaster</span><i></i><span>python</span></div>
-        <p class="note">probabilistic forecasts of next-day / next-week stock log-returns with calibrated confidence intervals · in progress</p>
-        <p class="tiny">python · xgboost · redis · mlflow · walk-forward validation vs. arima + persistence baselines</p>
-      </div>
-      <span class="go">→</span>
-    </a>
 
     <a class="proj rise" href="https://github.com/v5run/BAIMAX" target="_blank" rel="noopener">
       <img src="images/BAIMAX.png" alt="baimax" loading="lazy" data-zoom="baimax">
@@ -397,9 +379,9 @@
     </a>
 
     <a class="proj rise" href="https://github.com/v5run/v5run.github.io" target="_blank" rel="noopener">
-      <img src="images/webss.png" alt="varun.study" loading="lazy" data-zoom="varun.study">
+      <img src="images/webss.png" alt="varunp.me" loading="lazy" data-zoom="varunp.me">
       <div class="proj-body">
-        <div class="line"><span class="strong">varun.study</span><i></i><span>web</span></div>
+        <div class="line"><span class="strong">varunp.me</span><i></i><span>web</span></div>
         <p class="note">this receipt</p>
         <p class="tiny">html · css · javascript</p>
       </div>
@@ -470,7 +452,7 @@
       <div class="line"><span class="lbl"><svg class="ic"><use href="#i-github"/></svg>github</span><i></i><a href="https://github.com/v5run/" target="_blank" rel="noopener">@v5run</a></div>
       <div class="line"><span class="lbl"><svg class="ic"><use href="#i-linkedin"/></svg>linkedin</span><i></i><a href="https://www.linkedin.com/in/v5run/" target="_blank" rel="noopener">in/v5run</a></div>
       <div class="line"><span class="lbl"><svg class="ic"><use href="#i-instagram"/></svg>instagram</span><i></i><a href="https://www.instagram.com/v5run/" target="_blank" rel="noopener">@v5run</a></div>
-      <div class="line"><span class="lbl"><svg class="ic"><use href="#i-doc"/></svg>resume</span><i></i><a href="images/resume.pdf" target="_blank" rel="noopener">resume.pdf ↗</a></div>
+      <div class="line"><span class="lbl"><svg class="ic"><use href="#i-doc"/></svg>resume</span><i></i><a href="resume.pdf" target="_blank" rel="noopener">resume.pdf ↗</a></div>
     </div>
 
     <form class="note-form rise" action="https://formspree.io/f/meellzqw" method="POST">
@@ -501,15 +483,18 @@
     <div class="dashed" aria-hidden="true"></div>
     <p class="tiny rise">*** thank you for scrolling ***</p>
     <p class="tiny rise">no refunds · no returns · all opinions final</p>
+
     <div class="barcode rise" id="barcode" aria-hidden="true">
       <img class="sig-mark" src="images/signature.png" alt="varun pathak's signature">
     </div>
-    <p class="tiny rise" id="barcode-no">v5run · varun.study · 2026</p>
+    <p class="tiny rise" id="barcode-no">v5run · varunp.me · 2026</p>
     <p class="tiny rise">© 2026 varun pathak</p>
     <button class="reprint rise" id="reprint">↑ print again</button>
   </footer>
 
 </main>
+<div class="tear tear-bottom" aria-hidden="true"><i></i></div>
+</div>
 
 <!-- ============ IMAGE VIEWER ============ -->
 <div class="lb" id="lightbox" hidden>
@@ -520,6 +505,6 @@
   </figure>
 </div>
 
-<script src="script.js" defer></script>
+<script src="script.js?v=20261013p" defer></script>
 </body>
 </html>
